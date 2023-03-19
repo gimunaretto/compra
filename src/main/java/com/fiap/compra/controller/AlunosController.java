@@ -1,7 +1,9 @@
 package com.fiap.compra.controller;
 
 import com.fiap.compra.dto.AlunoDTO;
+import com.fiap.compra.dto.CompraAlunoDTO;
 import com.fiap.compra.entity.Aluno;
+import com.fiap.compra.entity.CompraAluno;
 import com.fiap.compra.service.AlunosService;
 import com.fiap.compra.utils.HTTPMessageResponse;
 import org.springframework.data.domain.Page;
@@ -10,7 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("api/alunos")
@@ -67,11 +71,13 @@ public class AlunosController {
         }
     }
 
-    @GetMapping("{id}/extrato")
-    public ResponseEntity extrato(
-            @PathVariable long id) {
-        return ResponseEntity.ok("Buscar o extrato do aluno...");
+    @GetMapping("/{id}/extrato")
+    public ResponseEntity<List<CompraAlunoDTO>> getExtrato(@PathVariable Long id) {
+        List<CompraAluno> extrato = alunosService.getExtrato(id);
+        List<CompraAlunoDTO> extratoDTO = extrato.stream().map(CompraAluno::_toDto).collect(Collectors.toList());
+        return ResponseEntity.ok(extratoDTO);
     }
+
 
     @PostMapping("{id}/comprar")
     public ResponseEntity comprar(

@@ -1,8 +1,11 @@
 package com.fiap.compra.service;
 
 import com.fiap.compra.dto.AlunoDTO;
+import com.fiap.compra.dto.CompraAlunoDTO;
 import com.fiap.compra.entity.Aluno;
+import com.fiap.compra.entity.CompraAluno;
 import com.fiap.compra.repository.AlunoRepository;
+import com.fiap.compra.repository.CompraAlunoRepository;
 import com.fiap.compra.utils.Utilitarios;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -26,6 +29,9 @@ public class AlunosServiceImpl implements AlunosService {
 
     @Autowired
     AlunoRepository alunoRepository;
+    
+    @Autowired
+    CompraAlunoRepository compraAlunoRepository;
 
     public AlunosServiceImpl() {
     }
@@ -102,6 +108,17 @@ public class AlunosServiceImpl implements AlunosService {
             alunoRepository.save(aluno.get());
         }
 
+    }
+
+    @Override
+    public List<CompraAluno> getExtrato(Long id) {
+        Optional<Aluno> optionalAluno = alunoRepository.findById(id);
+        if (optionalAluno.isPresent()) {
+            Aluno aluno = optionalAluno.get();
+            return compraAlunoRepository.findByAlunoId(aluno.getId());
+        } else {
+        }
+        return null;
     }
 
 }
