@@ -1,14 +1,17 @@
 package com.fiap.compra.dto;
 
-import java.math.BigDecimal;
+import com.fiap.compra.entity.Aluno;
 
-public class AlunosDTO {
+import java.time.LocalDate;
+import java.util.List;
+
+public class AlunoDTO {
     Long id;
     String nome;
     String ra;
     String cartao;
     Integer limite;
-
+    LocalDate deletedAt;
 
     public Long getId() {
         return id;
@@ -48,5 +51,24 @@ public class AlunosDTO {
 
     public void setLimite(Integer limite) {
         this.limite = limite;
+    }
+
+    public LocalDate getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDate deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Aluno _toEntity() {
+        Aluno aluno = new Aluno();
+        aluno.setId(id);
+        aluno.setNome(nome);
+        aluno.setRa(ra);
+        aluno.setCartao(cartao);
+        aluno.setLimite(limite);
+        aluno.setDeletedAt(deletedAt);
+        return aluno;
     }
 }

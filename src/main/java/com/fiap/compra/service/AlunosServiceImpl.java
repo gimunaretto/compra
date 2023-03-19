@@ -1,27 +1,38 @@
 package com.fiap.compra.service;
 
-import com.fiap.compra.dto.AlunosDTO;
+import com.fiap.compra.dto.AlunoDTO;
+import com.fiap.compra.entity.Aluno;
+import com.fiap.compra.repository.AlunoRepository;
 import com.fiap.compra.utils.Utilitarios;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
 @Service
 public class AlunosServiceImpl implements AlunosService {
 
+    @Autowired
+    AlunoRepository alunoRepository;
 
     public AlunosServiceImpl() {
-    }
-
-    @Override
-    public List<AlunosDTO> list() {
-        return null;
     }
 
     @Override
@@ -31,12 +42,12 @@ public class AlunosServiceImpl implements AlunosService {
             AtomicReference<Long> i = new AtomicReference<>(0L);
             BufferedReader reader = new BufferedReader(new InputStreamReader(arquivo.getInputStream()));
 
-            List<AlunosDTO> alunos =
+            List<Aluno> alunos =
                 reader.lines().collect(Collectors.toList())
                         .stream()
                         .filter( linha -> !linha.trim().isEmpty() && !linha.startsWith("------"))
                         .map( linha -> {
-                            AlunosDTO aluno = new AlunosDTO();
+                            Aluno aluno = new Aluno();
                             aluno.setId(i.getAndSet(i.get() + 1));
                             aluno.setNome(linha.substring(0, 41).trim());
                             aluno.setRa(linha.substring(42, 55).trim().replace(" ", "").replace("-", ""));
@@ -45,6 +56,8 @@ public class AlunosServiceImpl implements AlunosService {
                             return aluno;
                         })
                         .collect(Collectors.toList());
+
+            alunoRepository.saveAll(alunos);
 
             reader.close();
 
@@ -55,5 +68,45 @@ public class AlunosServiceImpl implements AlunosService {
 
     }
 
+    @Override
+    @Transactional
+    public Optional<Aluno> get(Long id) {
+        Optional<Aluno> aluno = alunoRepository.findById(id);
+        return aluno;
+    }
+
+    @Override
+    @Transactional
+    public Page<Aluno> list(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Aluno> listAlunos = alunoRepository.getAllAlunos(pageable);
+        return listAlunos;
+    }
+
+    @Override
+    public Aluno create(AlunoDTO alunoDTO) {
+        Aluno aluno = alunoDTO._toEntity();
+        alunoRepository.save(aluno);
+        return aluno;
+    }
+
+    @Override
+    public void update(Long id, AlunoDTO alunoDTO) {
+        Aluno a = alunoRepository.findById(id).get();
+        a.setNome(alunoDTO.getNome());
+        Integer limite = alunoDTO.getLimite();
+        if(limite != null) {
+            a.setLimite(alunoDTO.getLimite());
+        }
+        alunoRepository.save(a);
+    }
+    public void delete(Long id) {
+        Optional<Aluno> aluno = alunoRepository.findById(id);
+        if(!aluno.isEmpty()) {
+            aluno.get().setDeletedAt(LocalDate.now());
+            alunoRepository.save(aluno.get());
+        }
+
+    }
 
 }
