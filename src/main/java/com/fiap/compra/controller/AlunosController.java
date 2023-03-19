@@ -82,6 +82,14 @@ public class AlunosController {
     @PostMapping("{id}/comprar")
     public ResponseEntity comprar(
             @PathVariable long id) {
+        // QUAL O VALOR DA COMPRA??? BODY: { valor:
+        // buscar Aluno pelo ID; Optional<Aluno> aluno = alunosService.get(id);
+        // montar obj: ComprasAlunos; ComprasAlunos compra = new ComprasAlunos()
+        // chamar localhost:8085/api/autorizacao/{id} passando ComprasAlunos  *** PASSAR UM BODY, PUT
+        // a API retorna o ComprasAlunos com o statusCompra: CANCELADO//APROVADO.
+        // se aprovado: GRAVAR  no mysql O OBJETO ComprasAlunos;
+        // SE NÃO: NÃO GRAVAR
+        // RETORNA statusCompra
         return ResponseEntity.ok("Estourar o cartão - COMPRAR!!!...");
     }
 
