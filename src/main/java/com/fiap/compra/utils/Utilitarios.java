@@ -1,6 +1,5 @@
 package com.fiap.compra.utils;
 
-import java.math.BigDecimal;
 import java.util.Locale;
 
 public class Utilitarios {

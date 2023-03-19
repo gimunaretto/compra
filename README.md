@@ -3,36 +3,26 @@
 ## Avaliação Spring
 ___
 
-* SpringBoot 3.0;
-* Java 17;
-* Mysql;
-* Swagger;
-* Gerar números de cartões: fordevs;
-  https://www.4devs.com.br/gerador_de_numero_cartao_credito
-
-
-    * URL: localhost:8083/api
-      * GET:
-        * /alunos => lista todos os alunos
-        * /{id}/ => traz dados do aluno pelo ID;
-        * /{id}/extrato => emite extrato de compras do aluno;
-      * POST:
-        * /{id}/compra => fazer compra
-        * /upload => cadastro inicial dos alunos
-                     OBS: ao cadastrar, gerar cartão de crédito
-
-
-___
-
-### DETALHES:
-
-<b>Inicialização do projeto</b> - Abra o terminal dentro na pasta do projeto e execute o comando `docker-compose up`
-</br>
-
-<h3 align=center><b>Funcionalidades</b></h3>
 
 <p>
- <b>Crud de Alunos</b>
+    <h3 align=center><b>Tecnologias do projeto:</b></h3>
+    <li>SpringBoot 2.7.9</li>
+    <li>Java 11</li>
+    <li>Docker - Mysql</li>
+    <li>Documentação Swagger</li>
+</p>
+
+<h3 align=center><b>Start do Servidor MySql:</b></h3>
+
+    O banco de dados - Mysql - foi instalado em um Docker.
+    Para inicializar, abrir o terminal dentro na pasta do projeto
+    e executar o comando "docker-compose up".
+
+
+<h3 align=center><b>Funcionalidades:</b></h3>
+
+<p>
+ <b>Crud de Alunos:</b>
     <li>post (/alunos) - Cria um aluno</li>
     <li>post (/alunos/upload) - Faz upload do arquivo txt e cria todos os alunos</li>
     <li>post (/alunos/{id}/extrato) - Gera um extrato com as compras do aluno</li>
