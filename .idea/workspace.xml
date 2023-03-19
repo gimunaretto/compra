@@ -5,37 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ea8baac-5d61-485b-892c-96681e4fdc9e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/config/SpringDocConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/mysql-server.dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/mysql-server.dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/postman_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/postman_collection.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/CompraApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/CompraApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/controller/AlunosController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/controller/AlunosController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/dto/AlunoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/dto/AlunoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/dto/CompraAlunoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/dto/CompraAlunoDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/entity/Aluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/entity/Aluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/entity/CompraAluno.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/entity/CompraAluno.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/entity/model/StatusCompra.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/entity/model/StatusCompra.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/repository/AlunoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/repository/AlunoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/repository/CompraAlunoRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/repository/CompraAlunoRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/service/AlunosService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/service/AlunosService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/service/AlunosServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/service/AlunosServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/utils/HTTPMessageResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/utils/HTTPMessageResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/java/com/fiap/compra/utils/Utilitarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/fiap/compra/utils/Utilitarios.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/main/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/compra/src/test/java/com/fiap/compra/CompraApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/fiap/compra/CompraApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,22 +29,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;trusted.hosts&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "trusted.hosts",
+    "spring.configuration.checksum": "054d5fc6bbba3a968046dfc1fe9f45d0",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="5cf9d9cd-7312-4a3d-b9e5-07403c15b582" name="Changes" comment="" />
+      <changelist id="1ea8baac-5d61-485b-892c-96681e4fdc9e" name="Changes" comment="" />
       <created>1679252167507</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1679252167507</updated>
+      <workItem from="1679257698469" duration="483000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
