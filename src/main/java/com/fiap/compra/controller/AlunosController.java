@@ -83,7 +83,7 @@ public class AlunosController {
     public ResponseEntity uploadAlunos(
             @ RequestParam MultipartFile arquivo) throws Exception {
         alunosService.cadastroInicial(arquivo);
-        return ResponseEntity.ok("Carga inicial dos alunos, em arquivo txt..");
+        return ResponseEntity.ok("Carga inicial dos alunos executado com sucesso!");
     }
 
 
