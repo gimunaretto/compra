@@ -6,6 +6,9 @@ import com.fiap.compra.entity.Aluno;
 import com.fiap.compra.entity.CompraAluno;
 import com.fiap.compra.service.AlunosService;
 import com.fiap.compra.utils.HTTPMessageResponse;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,19 +28,25 @@ public class AlunosController {
     public AlunosController(AlunosService alunosService) {
         this.alunosService = alunosService;
     }
-
     @GetMapping
+    @RequestMapping(value = "/listarAlunos", method = RequestMethod.GET, produces="application/json")
+    @Operation(summary = "Retorna uma lista de pessoas", description  = "Esse método retorna uma lista de alunos: filtro realizado por página e quantidade de itens a serem retornados")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de alunos encontrada com sucesso!"),
+            @ApiResponse(responseCode = "404", description = "Erro ao buscar alunos"),
+    })
     public ResponseEntity listAll(@RequestHeader("page") Integer page, @RequestHeader("size") Integer size) {
         try {
             Page<Aluno> alunos = alunosService.list(page, size);
             return ResponseEntity.status(HttpStatus.OK).body(alunos);
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.OK).body(new HTTPMessageResponse("Erro ao buscar alunos."));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new HTTPMessageResponse("Erro ao buscar alunos."));
         }
     }
 
     @GetMapping("{id}")
+    @RequestMapping(value = "/filtrarALunoPorId/{id}", method = RequestMethod.GET, produces="application/json")
     public ResponseEntity findById(
             @PathVariable long id) {
         try {
@@ -45,7 +54,7 @@ public class AlunosController {
             return ResponseEntity.status(HttpStatus.OK).body(aluno.get()._toDto());
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.OK).body(new HTTPMessageResponse("Nenhum cliente com id={" + id + "} foi encontrado"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new HTTPMessageResponse("Nenhum cliente com id={" + id + "} foi encontrado"));
         }
     }
 
@@ -56,7 +65,7 @@ public class AlunosController {
             return ResponseEntity.status(HttpStatus.OK).body("Aluno atualizado com sucesso!");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.OK).body(new HTTPMessageResponse("Nenhum cliente com id={" + id + "} foi encontrado"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new HTTPMessageResponse("Nenhum cliente com id={" + id + "} foi encontrado"));
         }
     }
 
@@ -67,7 +76,7 @@ public class AlunosController {
             return ResponseEntity.status(HttpStatus.OK).body("Aluno deletado com sucesso!");
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.OK).body(new HTTPMessageResponse("Nenhum cliente com id={" + id + "} foi encontrado"));
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new HTTPMessageResponse("Nenhum cliente com id={" + id + "} foi encontrado"));
         }
     }
 
