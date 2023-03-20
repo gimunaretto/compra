@@ -5,13 +5,18 @@ import com.fiap.compra.dto.CompraAlunoDTO;
 import com.fiap.compra.entity.Aluno;
 import com.fiap.compra.entity.CompraAluno;
 import com.fiap.compra.service.AlunosService;
+import com.fiap.compra.service.ComprasService;
 import com.fiap.compra.utils.HTTPMessageResponse;
+<<<<<<< Updated upstream
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.core.io.ByteArrayResource;
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+>>>>>>> Stashed changes
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -32,6 +37,9 @@ import java.util.stream.Collectors;
 public class AlunosController {
 
     private final AlunosService alunosService;
+
+    @Autowired
+    private ComprasService comprasService;
 
     public AlunosController(AlunosService alunosService) {
         this.alunosService = alunosService;
@@ -152,6 +160,7 @@ public class AlunosController {
     }
 
     @PostMapping("{id}/comprar")
+<<<<<<< Updated upstream
     @Operation(summary = "Cadastra uma compra com cartão de crédito no banco.", description  = "Esse método verifica se o limite é maior ou igual o valor da compra e salva a compra no banco de dados com status de cancelado ou aprovado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Verificação de limite realizada!"),
@@ -168,6 +177,10 @@ public class AlunosController {
         // SE NÃO: NÃO GRAVAR
         // RETORNA statusCompra
         return ResponseEntity.ok("Estourar o cartão - COMPRAR!!!...");
+=======
+    public ResponseEntity<CompraAluno> comprar(@PathVariable long id, @RequestBody CompraAlunoDTO compra )  {
+        return ResponseEntity.ok(comprasService.efetuarCompra(id, compra));
+>>>>>>> Stashed changes
     }
 
     @PostMapping("upload")

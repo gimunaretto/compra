@@ -1,7 +1,6 @@
 package com.fiap.compra.service;
 
 import com.fiap.compra.dto.AlunoDTO;
-import com.fiap.compra.dto.CompraAlunoDTO;
 import com.fiap.compra.entity.Aluno;
 import com.fiap.compra.entity.CompraAluno;
 import com.fiap.compra.repository.AlunoRepository;

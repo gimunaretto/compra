@@ -1,7 +1,6 @@
 package com.fiap.compra.service;
 
 import com.fiap.compra.dto.AlunoDTO;
-import com.fiap.compra.dto.CompraAlunoDTO;
 import com.fiap.compra.entity.Aluno;
 import com.fiap.compra.entity.CompraAluno;
 import org.springframework.data.domain.Page;
@@ -9,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface AlunosService{

@@ -23,4 +23,12 @@ spring:
           new_generator_mappings: 'true'
         show_sql: 'false'
     hibernate:
+<<<<<<< Updated upstream
       ddl-auto: update
+=======
+      ddl-auto: update
+
+autorizadora:
+  put:
+    baseUrl: localhost:8083/api/autorizacao
+>>>>>>> Stashed changes
