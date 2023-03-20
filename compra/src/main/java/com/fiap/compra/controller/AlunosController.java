@@ -9,13 +9,20 @@ import com.fiap.compra.utils.HTTPMessageResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
+import org.springframework.core.io.ByteArrayResource;
 import org.springframework.data.domain.Page;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -104,12 +111,45 @@ public class AlunosController {
             @ApiResponse(responseCode = "200", description = "Extrato gerado com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Erro ao gerar extrato."),
     })
-    public ResponseEntity<List<CompraAlunoDTO>> getExtrato(@PathVariable Long id) {
+    public ResponseEntity<?> getExtrato(@PathVariable Long id) {
         List<CompraAluno> extrato = alunosService.getExtrato(id);
         List<CompraAlunoDTO> extratoDTO = extrato.stream().map(CompraAluno::_toDto).collect(Collectors.toList());
-        return ResponseEntity.ok(extratoDTO);
+        try {
+            byte[] csv = criarArquivoCSV(extratoDTO);
+            ByteArrayResource resource = new ByteArrayResource(csv);
+            HttpHeaders headers = new HttpHeaders();
+            headers.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=extrato.csv");
+            headers.add(HttpHeaders.CONTENT_TYPE, "text/csv");
+            headers.add(HttpHeaders.CACHE_CONTROL, "no-cache, no-store, must-revalidate");
+            headers.add(HttpHeaders.PRAGMA, "no-cache");
+            headers.add(HttpHeaders.EXPIRES, "0");
+            return ResponseEntity.ok()
+                    .headers(headers)
+                    .contentLength(resource.contentLength())
+                    .body(resource);
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Erro ao gerar o arquivo CSV");
+        }
     }
+    // public ResponseEntity<List<CompraAlunoDTO>> getExtrato(@PathVariable Long id) {
+    //     List<CompraAluno> extrato = alunosService.getExtrato(id);
+    //     List<CompraAlunoDTO> extratoDTO = extrato.stream().map(CompraAluno::_toDto).collect(Collectors.toList());
+    //     return ResponseEntity.ok(extratoDTO);
+    // }
 
+    private static byte[] criarArquivoCSV(List<CompraAlunoDTO> compras) throws IOException {
+        StringWriter writer = new StringWriter();
+        // Escreve o cabeçalho no arquivo CSV
+        CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT.withHeader("Id", "Data", "Estabelecimento", "Valor", "Status"));
+        // Escreve as compras no arquivo CSV
+        for (CompraAlunoDTO compra : compras) {
+            csvPrinter.printRecord(compra.getId(), compra.getData(), compra.getEstabelecimento(), compra.getValor(), compra.getStatusCompra());
+        }
+        csvPrinter.flush();
+        csvPrinter.close();
+        // Converte o arquivo CSV para array de bytes
+        return writer.toString().getBytes(StandardCharsets.UTF_8);
+    }
 
     @PostMapping("{id}/comprar")
     @Operation(summary = "Cadastra uma compra com cartão de crédito no banco.", description  = "Esse método verifica se o limite é maior ou igual o valor da compra e salva a compra no banco de dados com status de cancelado ou aprovado")
