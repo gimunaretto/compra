@@ -7,16 +7,15 @@ import com.fiap.compra.entity.CompraAluno;
 import com.fiap.compra.service.AlunosService;
 import com.fiap.compra.service.ComprasService;
 import com.fiap.compra.utils.HTTPMessageResponse;
-<<<<<<< Updated upstream
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 import org.springframework.core.io.ByteArrayResource;
-=======
 import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> Stashed changes
+
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -160,27 +159,14 @@ public class AlunosController {
     }
 
     @PostMapping("{id}/comprar")
-<<<<<<< Updated upstream
     @Operation(summary = "Cadastra uma compra com cartão de crédito no banco.", description  = "Esse método verifica se o limite é maior ou igual o valor da compra e salva a compra no banco de dados com status de cancelado ou aprovado")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Verificação de limite realizada!"),
             @ApiResponse(responseCode = "404", description = "Erro ao processar a compra."),
     })
-    public ResponseEntity comprar(
-            @PathVariable long id) {
-        // QUAL O VALOR DA COMPRA??? BODY: { valor:
-        // buscar Aluno pelo ID; Optional<Aluno> aluno = alunosService.get(id);
-        // montar obj: ComprasAlunos; ComprasAlunos compra = new ComprasAlunos()
-        // chamar localhost:8085/api/autorizacao/{id} passando ComprasAlunos  *** PASSAR UM BODY, PUT
-        // a API retorna o ComprasAlunos com o statusCompra: CANCELADO//APROVADO.
-        // se aprovado: GRAVAR  no mysql O OBJETO ComprasAlunos;
-        // SE NÃO: NÃO GRAVAR
-        // RETORNA statusCompra
-        return ResponseEntity.ok("Estourar o cartão - COMPRAR!!!...");
-=======
     public ResponseEntity<CompraAluno> comprar(@PathVariable long id, @RequestBody CompraAlunoDTO compra )  {
         return ResponseEntity.ok(comprasService.efetuarCompra(id, compra));
->>>>>>> Stashed changes
+
     }
 
     @PostMapping("upload")

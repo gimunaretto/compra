@@ -21,11 +21,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.15'
 	implementation group: 'org.springdoc', name: 'springdoc-openapi-webmvc-core', version: '1.6.15'
-<<<<<<< Updated upstream
 	implementation 'org.apache.commons:commons-csv:1.8'
-=======
-
->>>>>>> Stashed changes
 	runtimeOnly 'mysql:mysql-connector-java:5.1.37'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
