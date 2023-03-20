@@ -1,5 +1,5 @@
 server:
-  port: '8083'
+  port: '8084'
 
 springdoc:
   swagger-ui:
@@ -24,7 +24,3 @@ spring:
         show_sql: 'false'
     hibernate:
       ddl-auto: update
-
-autorizadora:
-  put:
-    baseUrl: localhost:8085/api/autorizacao
