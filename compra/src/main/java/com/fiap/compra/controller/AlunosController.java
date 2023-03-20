@@ -11,6 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,14 +24,14 @@ import java.util.stream.Collectors;
 @RequestMapping("api/alunos")
 public class AlunosController {
 
-    private AlunosService alunosService;
+    private final AlunosService alunosService;
 
     public AlunosController(AlunosService alunosService) {
         this.alunosService = alunosService;
     }
     @GetMapping
     @RequestMapping(value = "/listarAlunos", method = RequestMethod.GET, produces="application/json")
-    @Operation(summary = "Retorna uma lista de pessoas", description  = "Esse método retorna uma lista de alunos: filtro realizado por página e quantidade de itens a serem retornados")
+    @Operation(summary = "Retorna uma lista de pessoas.", description  = "Esse método retorna uma lista de alunos: filtro realizado por página e quantidade de itens a serem retornados")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lista de alunos encontrada com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Erro ao buscar alunos."),
@@ -46,8 +47,8 @@ public class AlunosController {
     }
 
     @GetMapping("{id}")
-    @RequestMapping(value = "/filtrarALunoPorId/{id}", method = RequestMethod.GET, produces="application/json")
-    @Operation(summary = "Chama um unico aluno por id", description  = "Esse método retorna um unico aluno: filtro realizado por id.")
+    @RequestMapping(value = "/filtrarAlunoPorId/{id}", method = RequestMethod.GET, produces="application/json")
+    @Operation(summary = "Chama um único aluno por id.", description  = "Esse método retorna um unico aluno: filtro realizado por id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Aluno encontrado com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Erro ao buscar aluno."),
@@ -64,7 +65,8 @@ public class AlunosController {
     }
 
     @PutMapping("{id}")
-    @Operation(summary = "Atualiza o aluno.", description  = "Esse método atualiza o aluno.")
+    @RequestMapping(value = "/atualizarAluno/{id}", method = RequestMethod.PUT)
+    @Operation(summary = "Atualiza o cadastro do aluno.", description  = "Esse método atualiza o cadastro do aluno: filtro ocorre por id.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Informação do aluno atualizada com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Aluno não encontrado."),
@@ -80,7 +82,8 @@ public class AlunosController {
     }
 
     @DeleteMapping("{id}")
-    @Operation(summary = "Deleta o aluno", description  = "Esse método deleta o aluno do banco de dados de acordo com o id fornecido")
+    @RequestMapping(value = "/deletarAluno/{id}", method = RequestMethod.DELETE)
+    @Operation(summary = "Deleta o cadastro do aluno do banco.", description  = "Esse método deleta o aluno do banco de dados de acordo com o id fornecido.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Aluno deletado com sucesso!"),
             @ApiResponse(responseCode = "404", description = "Aluno não encontrado! Erro ao deletar aluno."),
@@ -128,7 +131,8 @@ public class AlunosController {
     }
 
     @PostMapping("upload")
-    @Operation(summary = "Cadastro de aluno via arquivo .TXT", description  = "Esse método grava no banco de dados todos os alunos contidos no arquivo .TXT")
+    @RequestMapping(value = "/cadastrarAlunos", method = RequestMethod.POST, consumes =  MediaType.MULTIPART_FORM_DATA_VALUE)
+    @Operation(summary = "Cadastro de aluno via arquivo .TXT.", description  = "Esse método grava no banco de dados todos os alunos contidos no arquivo .TXT.")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Lista de alunos gravada com sucesso!"),
     })
